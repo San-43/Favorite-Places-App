@@ -1,3 +1,4 @@
+import 'package:favorite_places_app/chat_bot/chat_screen.dart';
 import 'package:favorite_places_app/providers/user_places.dart';
 import 'package:favorite_places_app/screens/add_place.dart';
 import 'package:favorite_places_app/widgets/places_list.dart';
@@ -18,7 +19,7 @@ class PlacesScreen extends ConsumerWidget {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (ctx) => const AddPlaceScreen()),
+                MaterialPageRoute(builder: (ctx) => const ChatScreen()),
               );
             },
             icon: Icon(Icons.add),
