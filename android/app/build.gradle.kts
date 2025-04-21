@@ -1,3 +1,17 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+val keyProperties = Properties()
+val keyPropertiesFile = rootProject.file("key.properties")
+println("Loading key.properties from: ${keyPropertiesFile.absolutePath}")
+
+if (keyPropertiesFile.exists()) {
+    keyProperties.load(FileInputStream(keyPropertiesFile))
+} else {
+    throw GradleException("Missing key.properties at ${keyPropertiesFile.absolutePath}")
+}
+
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -28,6 +42,11 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        val googleMapsApiKey = keyProperties["GOOGLE_MAPS_API_KEY"] as? String
+            ?: throw GradleException("GOOGLE_MAPS_API_KEY is missing in key.properties")
+
+        manifestPlaceholders["GOOGLE_MAPS_API_KEY"] = googleMapsApiKey
     }
 
     buildTypes {
