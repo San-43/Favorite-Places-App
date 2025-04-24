@@ -1,3 +1,4 @@
+import 'package:favorite_places_app/screens/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -9,7 +10,6 @@ class PlaceDetailScreen extends StatelessWidget {
   final Place place;
 
   String get locationImage {
-
     final googleMapsApiKey = dotenv.env['GOOGLE_MAPS_API_KEY'];
     final lat = place.location.latitude;
     final lng = place.location.longitude;
@@ -34,9 +34,16 @@ class PlaceDetailScreen extends StatelessWidget {
             right: 0,
             child: Column(
               children: [
-                CircleAvatar(
-                  radius: 70,
-                  backgroundImage: NetworkImage(locationImage),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(
+                      context,
+                    ).push(MaterialPageRoute(builder: (ctx) => MapScreen()));
+                  },
+                  child: CircleAvatar(
+                    radius: 70,
+                    backgroundImage: NetworkImage(locationImage),
+                  ),
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -48,7 +55,7 @@ class PlaceDetailScreen extends StatelessWidget {
                     gradient: LinearGradient(
                       colors: [Colors.transparent, Colors.black54],
                       begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter
+                      end: Alignment.bottomCenter,
                     ),
                   ),
                   child: Text(
