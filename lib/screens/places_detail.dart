@@ -38,7 +38,10 @@ class PlaceDetailScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.of(
                       context,
-                    ).push(MaterialPageRoute(builder: (ctx) => MapScreen()));
+                    ).push(MaterialPageRoute(builder: (ctx) => MapScreen(
+                      location: place.location,
+                      isSelected: false,
+                    )));
                   },
                   child: CircleAvatar(
                     radius: 70,
