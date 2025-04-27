@@ -28,8 +28,9 @@ class UserPlacesNotifier extends StateNotifier<List<Place>> {
   void loadPlaces() async {
     final db = await _getDatabase();
     final data = await db.query('user_places');
-    data.map(
+    final places = data.map(
       (item) => Place(
+        id: item['id'] as String,
         title: item['title'] as String,
         image: File(item['image'] as String),
         location: PlaceLocation(
@@ -38,7 +39,9 @@ class UserPlacesNotifier extends StateNotifier<List<Place>> {
           address: item['address'] as String,
         ),
       ),
-    );
+    ).toList();
+
+    state = places;
   }
 
   void addPlace(String title, File image, PlaceLocation location) async {
