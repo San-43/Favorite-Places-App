@@ -1,16 +1,52 @@
-# favorite_places_app
+# Favorite Places App
 
-A new Flutter project.
+Aplicación Flutter para registrar lugares favoritos con foto y ubicación. Permite guardar la información localmente y visualizarla en un mapa.
 
-## Getting Started
+## Características
 
-This project is a starting point for a Flutter application.
+- Crear lugares con título, foto y ubicación actual o seleccionada en el mapa.
+- Vista de detalle con imagen, dirección y mapa interactivo.
+- Persistencia local mediante SQLite.
+- Integración con Google Maps (mapa y geocodificación inversa).
 
-A few resources to get you started if this is your first Flutter project:
+## Requisitos
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter SDK (versión compatible con el `sdk: ^3.7.0`).
+- Cuenta y API key de Google Maps.
+- Archivo `.env` con las variables necesarias.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Configuración
+
+1. Crea un archivo `.env` en la raíz del proyecto:
+
+   ```env
+   GOOGLE_MAPS_API_KEY=tu_api_key
+   OPENAI_API_KEY=tu_api_key
+   ```
+
+   > `OPENAI_API_KEY` se usa en la pantalla de chat bot si la habilitas en la UI.
+
+2. Instala dependencias:
+
+   ```bash
+   flutter pub get
+   ```
+
+3. Ejecuta la app:
+
+   ```bash
+   flutter run
+   ```
+
+## Estructura del proyecto
+
+- `lib/screens/`: pantallas principales (listado, detalle, mapa, alta de lugar).
+- `lib/widgets/`: componentes reutilizables (imagen, ubicación, lista).
+- `lib/providers/`: estado y persistencia (Riverpod + SQLite).
+- `lib/model/`: modelos de dominio.
+
+## Notas
+
+- Para Google Maps en Android/iOS, asegúrate de configurar las API keys también en los archivos nativos según la guía oficial de Flutter/Google Maps.
+- La geocodificación inversa usa la API de Google Maps para obtener la dirección.
+
